@@ -3,8 +3,7 @@ package com.example.ktsdemo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import com.github.mikephil.charting.charts.LineChart;
+import com.example.ktsdemo.util.FileUtils;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
@@ -15,7 +14,6 @@ import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.ValueShape;
-import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
 
 import static lecho.lib.hellocharts.util.ChartUtils.COLOR_BLUE;
