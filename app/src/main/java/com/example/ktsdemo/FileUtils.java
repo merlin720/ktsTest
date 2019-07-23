@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import lecho.lib.hellocharts.model.PointValue;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,7 +22,33 @@ import org.json.JSONObject;
  * @description
  */
 public class FileUtils {
+  public static List<PointValue> load1Data(AssetManager am , String path){
+    List<PointValue> entries = new ArrayList<>();
+    BufferedReader reader = null;
+    try {
+      reader = new BufferedReader(new InputStreamReader(am.open(path),"UTF-8"));
+      String line = reader.readLine();
+      while (null != line){
+        String s = line.replace("\t", "#");
+        String[] split = s.split("#");
+        //Log.e("merlin", split.length+"" + split[0]);
+        entries.add(new PointValue(Float.parseFloat(split[0]),Float.parseFloat(split[1])));
+        line  = reader.readLine();
+      }
 
+    } catch (IOException e) {
+      e.printStackTrace();
+    }finally {
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException e) {
+          Log.e("merlin", e.toString());
+        }
+      }
+    }
+    return  entries;
+  }
     public static List<Entry> loadData(AssetManager am , String path){
       List<Entry> entries = new ArrayList<>();
       BufferedReader reader = null;

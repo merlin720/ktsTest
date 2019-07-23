@@ -1,4 +1,5 @@
 <resources>
   <string name="app_name">KTSDemo</string>
   <string name="next">next</string>
+  <string name="update">update</string>
 </resources>

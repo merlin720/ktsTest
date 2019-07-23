@@ -28,8 +28,9 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
   private static final String path = "/Users/merlin720/kts/document/test.txt";
-  private static final String url = "http://192.168.1.229:8080/test/queryFileContent.do";
-  private static final String updateUrl = "http://192.168.1.229:8080/test/updateFileContent.do";
+  private static final String path1 = "E:\\data_R\\jjj\\niuzhuanpilao.xml\\test.txt";
+  private static final String url = "http://192.168.1.219:8080/test/queryFileContent.do";
+  private static final String updateUrl = "http://192.168.1.219:8080/test/updateFileContent.do";
   LineChart chart;
 
   @Override
@@ -40,12 +41,23 @@ public class MainActivity extends AppCompatActivity {
     chart = findViewById(R.id.lineChart1);
 
     chart.getDescription().setEnabled(false);
+    //是否可以缩放、移动、触摸
+    chart.setTouchEnabled(true);
+    chart.setDragEnabled(true);
+
+    //不能让缩放，不然有bug，所以接口也没实现
+    chart.setScaleEnabled(false);
+    chart.setPinchZoom(true);
 
     chart.setDrawGridBackground(false);
 
     findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        //startActivity(new Intent(MainActivity.this, SecondActivity.class));
+        startActivity(new Intent(MainActivity.this, SecondActivity.class));
+      }
+    });
+    findViewById(R.id.update).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
         update();
       }
     });
