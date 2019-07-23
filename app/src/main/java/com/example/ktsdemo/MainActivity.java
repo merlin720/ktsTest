@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import com.example.ktsdemo.net.NetworkMgr1;
 import com.example.ktsdemo.util.FileUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    NetworkMgr1.getInstance().init(this, true);
+
     chart = findViewById(R.id.lineChart1);
 
     chart.getDescription().setEnabled(false);

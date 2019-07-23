@@ -1,4 +1,4 @@
-package com.example.ktsdemo;
+package com.example.ktsdemo.net;
 
 import com.google.gson.Gson;
 import com.merlin.network.HttpMethod;

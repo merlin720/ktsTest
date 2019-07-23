@@ -1,4 +1,4 @@
-package com.example.ktsdemo;
+package com.example.ktsdemo.net;
 
 import android.content.Context;
 import com.merlin.network.CallBack;
