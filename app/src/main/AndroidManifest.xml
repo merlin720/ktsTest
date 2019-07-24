@@ -4,6 +4,14 @@
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+  <!-- 以下是使用wifi访问网络所需的权限 -->
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
   <application
       android:name=".KTSApplication"
       android:allowBackup="true"
@@ -14,6 +22,9 @@
       android:networkSecurityConfig="@xml/network_security_config"
       android:theme="@style/AppTheme">
     <activity android:name=".MainActivity">
+
+    </activity>
+    <activity android:name=".ListActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 

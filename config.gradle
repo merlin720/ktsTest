@@ -1,0 +1,22 @@
+ext {
+  
+  android = [
+      compileSdkVersion : 26,
+      targetSdkVersion : 26,
+      appid : "com.example.ktsdemo",
+      minSdkVersion : 19,
+
+  ]
+  dependencies = [recyclerview: 'com.android.support:recyclerview-v7:27.1.1',
+                  appcompat_v7: 'com.android.support:appcompat-v7:27.1.1',
+                  hello_chart:'com.github.lecho:hellocharts-android:v1.5.8',
+      gson:'com.google.code.gson:gson:2.8.5',
+      rxjava:"io.reactivex.rxjava3:rxjava:3.0.0-RC0",
+      brvah:'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46',
+      mpchart:'com.github.PhilJay:MPAndroidChart:v3.1.0',
+      network:'com.merlin.network:network:1.0.0',
+      espresso:'com.android.support.test.espresso:espresso-core:3.0.2',
+      constraint:'com.android.support.constraint:constraint-layout:1.1.3',
+
+  ]
+}

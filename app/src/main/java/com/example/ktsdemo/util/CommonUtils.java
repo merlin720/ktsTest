@@ -7,4 +7,5 @@ package com.example.ktsdemo.util;
  * @description
  */
 public class CommonUtils {
+  public static final String IP = "http://192.168.1.219";
 }
