@@ -1,10 +1,12 @@
 package com.example.ktsdemo;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import com.example.ktsdemo.base.BaseActivity;
 import com.example.ktsdemo.net.NetworkMgr1;
 import com.example.ktsdemo.util.FileUtils;
 import com.github.mikephil.charting.charts.LineChart;
@@ -21,32 +23,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static com.example.ktsdemo.util.CommonUtils.IP;
+import static com.example.ktsdemo.util.CommonUtils.PATH;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-  private static final String PATH = "/Users/merlin720/kts/document/";
-  private static final String FilePath = "/Users/merlin720/kts/document";
-  private static final String path1 = "E:\\data_R\\jjj\\niuzhuanpilao.xml\\test.txt";
   private static final String url = IP + ":8080/test/queryFileContent.do";
-  private static final String getFiles = IP + ":8080/test/queryFiles.do";
+
   private static final String updateUrl = IP + ":8080/test/updateFileContent.do";
   LineChart chart;
   private String path;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    getIntentData();
-    initView();
-    setListener();
-    getData();
+  @Override protected int setLayoutId() {
+    return R.layout.activity_main;
   }
 
-  private void getIntentData(){
+  private void getIntentData() {
     path = PATH + getIntent().getStringExtra("path");
   }
-  private void initView() {
+
+  protected void initView() {
     chart = findViewById(R.id.lineChart1);
 
     chart.getDescription().setEnabled(false);
@@ -61,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     chart.setDrawGridBackground(false);
   }
 
-  private void setListener() {
+  protected void setListener() {
     findViewById(R.id.text).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         startActivity(new Intent(MainActivity.this, SecondActivity.class));
@@ -103,8 +98,9 @@ public class MainActivity extends AppCompatActivity {
     return d;
   }
 
-  private void getData() {
-
+  @Override
+  protected void initData(@Nullable Bundle savedInstanceState) {
+    getIntentData();
     HashMap<String, String> params = new HashMap<>();
     params.put("filePath", path);
     NetworkMgr1.getInstance()
@@ -183,6 +179,4 @@ public class MainActivity extends AppCompatActivity {
     //d.setValueTypeface(tf);
     return d;
   }
-
-
 }

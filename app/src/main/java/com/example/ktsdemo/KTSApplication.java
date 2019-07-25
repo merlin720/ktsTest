@@ -18,6 +18,7 @@ public class KTSApplication extends Application {
     NetworkMgr1.getInstance().init(this, true);
     Utils.init(this);
     initLog();//log 初始化
+    LogUtils.e("ssssssssssssssssssss");
   }
   /**
    * Log打印初始

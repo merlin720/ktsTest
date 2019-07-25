@@ -9,6 +9,8 @@ import com.example.ktsdemo.BuildConfig;
  * @description
  */
 public class CommonUtils {
-  public static final String IP = "http://192.168.1.219";
   public static final boolean isDebug = !BuildConfig.ISRELEASE;
+  public static final String IP = "http://192.168.1.219";
+  public static final String PATH = "/Users/merlin720/kts/document/";
+  //public static final String PATH = "E:\\data_R\\jjj\\niuzhuanpilao.xml\\";
 }

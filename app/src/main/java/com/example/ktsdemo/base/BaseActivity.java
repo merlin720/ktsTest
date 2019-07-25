@@ -1,11 +1,12 @@
 package com.example.ktsdemo.base;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import com.example.ktsdemo.CustomTitleBar;
+import com.example.ktsdemo.R;
 import com.example.ktsdemo.util.LogUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import org.greenrobot.eventbus.EventBus;
@@ -19,17 +20,15 @@ import org.greenrobot.eventbus.EventBus;
 public abstract class BaseActivity extends AppCompatActivity {
   protected ImmersionBar mImmersionBar;
   protected View mRootView;
-
+  public CustomTitleBar titleLayout;
   /**
    * 是否在Activity使用沉浸式
    *
    * @return the boolean
    */
   protected boolean isImmersionBarEnabled() {
-    return false;
+    return true;
   }
-
-
 
   /**
    * 是否注册EventBus
@@ -39,17 +38,16 @@ public abstract class BaseActivity extends AppCompatActivity {
     return false;
   }
 
-  @Override
-  public void onCreate(@Nullable Bundle savedInstanceState,
-      @Nullable PersistableBundle persistentState) {
-    super.onCreate(savedInstanceState, persistentState);
+  @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
     if (isRegisterEventBus()) {
       EventBus.getDefault().register(this);
     }
     LogUtils.e("===当前activity：(" + this.getClass().getSimpleName() + ".java:1)");
     mRootView = LayoutInflater.from(this).inflate(setLayoutId(), null);
     setContentView(mRootView);
-    LogUtils.d("this is merlin ,and this is onCreate fun");
+
+    titleLayout = findViewById(R.id.title_layout);
     //初始化view
     initView();
 
@@ -61,6 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity {
       initImmersionBar();
     }
   }
+
 
   @Override protected void onDestroy() {
     super.onDestroy();

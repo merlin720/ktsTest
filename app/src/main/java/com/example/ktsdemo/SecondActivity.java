@@ -3,6 +3,7 @@ package com.example.ktsdemo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import com.example.ktsdemo.base.BaseActivity;
 import com.example.ktsdemo.util.FileUtils;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -22,7 +23,7 @@ import static lecho.lib.hellocharts.util.ChartUtils.COLOR_ORANGE;
 import static lecho.lib.hellocharts.util.ChartUtils.COLOR_RED;
 import static lecho.lib.hellocharts.util.ChartUtils.COLOR_VIOLET;
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends BaseActivity {
   private boolean hasAxes = true;
   private boolean hasAxesNames = true;
   private boolean hasLines = true;
@@ -33,10 +34,13 @@ public class SecondActivity extends AppCompatActivity {
   private boolean isCubic = false;
   private boolean hasLabelForSelected = false;
   public static final int[] COLORS = new int[]{COLOR_BLUE, COLOR_VIOLET, COLOR_GREEN, COLOR_ORANGE, COLOR_RED};
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_second);
+
+  @Override protected int setLayoutId() {
+    return R.layout.activity_second;
+  }
+
+  @Override protected void initView() {
+    super.initView();
     LineChartView chart = findViewById(R.id.chart);
 
 
@@ -74,8 +78,8 @@ public class SecondActivity extends AppCompatActivity {
     data.setBaseValue(Float.NEGATIVE_INFINITY);
     chart.setLineChartData(data);
 
-
   }
+
 
   protected LineData generateLineData() {
 

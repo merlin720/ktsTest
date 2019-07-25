@@ -3,6 +3,7 @@ package com.example.ktsdemo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,10 +25,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static com.example.ktsdemo.util.CommonUtils.IP;
+import static com.example.ktsdemo.util.CommonUtils.PATH;
 
 public class ListActivity extends BaseActivity {
 
-  private static final String FilePath = "/Users/merlin720/kts/document";
   private static final String getFiles = IP + ":8080/test/queryFiles.do";
   private RecyclerView mRecyclerView;
 
@@ -39,17 +40,21 @@ public class ListActivity extends BaseActivity {
     return R.layout.activity_list;
   }
 
+  //@Override
+  //protected void onCreate(Bundle savedInstanceState) {
+  //  super.onCreate(savedInstanceState);
+  //  setContentView(R.layout.activity_list);
+  //
+  //}
+
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_list);
-
-    initView();
-    initData();
-    setListener();
-  }
-
   protected void initView() {
+    titleLayout.setMiddleTitle(getString(R.string.main_list));
+    titleLayout.setLineVisibility(View.GONE);
+    titleLayout.getMiddleView().getPaint().setFakeBoldText(true);
+    titleLayout.setMiddleTextSize(19);
+    titleLayout.setMiddleTextColor(ContextCompat.getColor(this, R.color.col_333333));
+    titleLayout.getRigthTv().setVisibility(View.GONE);
     mRecyclerView = findViewById(R.id.list_recycler_view);
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
     mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -60,14 +65,15 @@ public class ListActivity extends BaseActivity {
   /**
    * 初始化数据
    */
-  protected void initData() {
+  @Override
+  protected void initData(@Nullable Bundle savedInstanceState) {
     mContentData = new ArrayList<>();
     getFiles();
   }
 
   private void getFiles() {
     HashMap<String, String> params = new HashMap<>();
-    params.put("filePath", FilePath);
+    params.put("filePath", PATH);
     NetworkMgr1.getInstance()
         .post(String.class, getFiles, params, new CallBack<String>() {
           @Override
@@ -100,7 +106,7 @@ public class ListActivity extends BaseActivity {
           }
         });
   }
-
+@Override
   protected void setListener() {
     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
       @Override public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

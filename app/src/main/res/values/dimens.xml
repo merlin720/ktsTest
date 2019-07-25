@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="s_14">14sp</dimen>
+  <dimen name="status_bar_height">0dp</dimen>
+
+  <dimen name="d_220">220dp</dimen>
+  <dimen name="d_48">48dp</dimen>
+  <dimen name="d_10">10dp</dimen>
+</resources>
