@@ -1,13 +1,10 @@
 package com.example.ktsdemo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -25,46 +22,39 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import static com.example.ktsdemo.util.CommonUtils.IP;
-import static com.example.ktsdemo.util.CommonUtils.PATH;
+import static com.example.ktsdemo.util.CommonUtils.SETTING_PATH;
 
 /**
- * @author merlin720
- * 数据文件的列表页
+ * @author merlin
+ * 设置页列表界面
  */
-public class ListActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity {
 
-  private static final String getFiles = IP + ":8080/test/queryFiles.do";
+  private static final String GET_SETTING_FILE = IP + ":8080/test/querySettingFiles.do";
   private RecyclerView mRecyclerView;
 
   private KTSListAdapter adapter;
 
   private List<String> mContentData;
-
   @Override protected int setLayoutId() {
-    return R.layout.activity_list;
+    return R.layout.activity_setting;
   }
 
-  //@Override
-  //protected void onCreate(Bundle savedInstanceState) {
-  //  super.onCreate(savedInstanceState);
-  //  setContentView(R.layout.activity_list);
-  //
-  //}
-
-  @Override
-  protected void initView() {
-    titleLayout.setMiddleTitle(getString(R.string.main_list));
+  @Override protected void initView() {
+    super.initView();
+    titleLayout.setLeftImage(R.drawable.left_arrow);
+    titleLayout.setMiddleTitle(getString(R.string.setting));
     titleLayout.getMiddleView().getPaint().setFakeBoldText(true);
     titleLayout.setMiddleTextSize(19);
     titleLayout.setMiddleTextColor(ContextCompat.getColor(this, R.color.col_333333));
     titleLayout.getRigthTv().setVisibility(View.GONE);
-    mRecyclerView = findViewById(R.id.list_recycler_view);
+
+    mRecyclerView = findViewById(R.id.setting_recycler_view);
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
     mRecyclerView.setLayoutManager(linearLayoutManager);
     adapter = new KTSListAdapter();
     mRecyclerView.setAdapter(adapter);
   }
-
   /**
    * 初始化数据
    */
@@ -76,10 +66,10 @@ public class ListActivity extends BaseActivity {
 
   private void getFiles() {
     HashMap<String, String> params = new HashMap<>();
-    params.put("filePath", PATH);
-    params.put("endStr", ".dat");
+    params.put("filePath", SETTING_PATH);
+    params.put("endStr", ".ini");
     NetworkMgr1.getInstance()
-        .post(String.class, getFiles, params, new CallBack<String>() {
+        .post(String.class, GET_SETTING_FILE, params, new CallBack<String>() {
           @Override
           public void onResponse(String response) {
             JSONObject jsonObject = null;
@@ -97,7 +87,7 @@ public class ListActivity extends BaseActivity {
                 mContentData.addAll(list);
                 adapter.setNewData(list);
               } else {
-                Toast.makeText(ListActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(SettingActivity.this, message, Toast.LENGTH_LONG).show();
               }
             } catch (JSONException e) {
               e.printStackTrace();
@@ -110,15 +100,20 @@ public class ListActivity extends BaseActivity {
           }
         });
   }
-@Override
+  @Override
   protected void setListener() {
+    titleLayout.setTitleClickListener(new CustomTitleBar.TitleUpdateListener() {
+      @Override public void onLeftClick() {
+        finish();
+      }
+    });
     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
       @Override public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        if (mContentData.size()>0){
-          Intent intent = new Intent(ListActivity.this,MainActivity.class);
-          intent.putExtra("path", mContentData.get(position));
-          startActivity(intent);
-        }
+        //if (mContentData.size()>0){
+        //  Intent intent = new Intent(SettingActivity.this,MainActivity.class);
+        //  intent.putExtra("path", mContentData.get(position));
+        //  startActivity(intent);
+        //}
       }
     });
   }

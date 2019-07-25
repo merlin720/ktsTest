@@ -2,6 +2,7 @@ package com.example.ktsdemo;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,11 @@ import org.json.JSONObject;
 import static com.example.ktsdemo.util.CommonUtils.IP;
 import static com.example.ktsdemo.util.CommonUtils.PATH;
 
+/**
+ * @author merlin720
+ * 具体的数据展示页这里是一个折线图的界面，这里是通过上一个界面点击传递了一个文件名字的参数，
+ * 通过文件的路径获取文件的内容，就是一个二维的数据，加载到数轴上，画出折线图。
+ */
 public class MainActivity extends BaseActivity {
 
   private static final String url = IP + ":8080/test/queryFileContent.do";
@@ -42,6 +48,14 @@ public class MainActivity extends BaseActivity {
   }
 
   protected void initView() {
+    titleLayout.setMiddleTitle(getString(R.string.main_list));
+    titleLayout.getMiddleView().getPaint().setFakeBoldText(true);
+    titleLayout.setMiddleTextSize(19);
+    titleLayout.setMiddleTextColor(ContextCompat.getColor(this, R.color.col_333333));
+    titleLayout.setRightTitle("设置");
+    titleLayout.setRightAlpha(1);
+    titleLayout.setRightTextSize(18);
+    titleLayout.setRightTextColor(ContextCompat.getColor(this, R.color.col_333333));
     chart = findViewById(R.id.lineChart1);
 
     chart.getDescription().setEnabled(false);
@@ -49,8 +63,6 @@ public class MainActivity extends BaseActivity {
     chart.setTouchEnabled(true);
     chart.setDragEnabled(true);
 
-    //不能让缩放，不然有bug，所以接口也没实现
-    chart.setScaleEnabled(false);
     chart.setPinchZoom(true);
 
     chart.setDrawGridBackground(false);
@@ -67,9 +79,10 @@ public class MainActivity extends BaseActivity {
         update();
       }
     });
-    findViewById(R.id.get_path).setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
 
+    titleLayout.setTitleClickListener(new CustomTitleBar.TitleUpdateListener() {
+      @Override public void onRightClick() {
+        startActivity(new Intent(MainActivity.this, SettingActivity.class));
       }
     });
   }
@@ -98,6 +111,10 @@ public class MainActivity extends BaseActivity {
     return d;
   }
 
+  /**
+   * 通过获取过来的文件名字，获取文件的内容加载到图标上。
+   * @param savedInstanceState
+   */
   @Override
   protected void initData(@Nullable Bundle savedInstanceState) {
     getIntentData();
@@ -131,6 +148,9 @@ public class MainActivity extends BaseActivity {
         });
   }
 
+  /**
+   * 修改文件内容，传一个key 一个value，还有文件的路径。
+   */
   private void update() {
     HashMap<String, String> params = new HashMap<>();
     params.put("key1", "key1");

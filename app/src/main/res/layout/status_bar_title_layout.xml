@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/transparent_status_bar" />
+
 
     <com.example.ktsdemo.CustomTitleBar
         android:id="@+id/title_layout"

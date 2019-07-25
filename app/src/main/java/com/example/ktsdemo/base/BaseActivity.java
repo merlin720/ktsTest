@@ -74,6 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity {
   protected void initImmersionBar() {
     mImmersionBar = ImmersionBar.with(this);
     mImmersionBar
+        .fitsSystemWindows(true)
         .statusBarDarkFont(true, 0.2f)
         .navigationBarWithKitkatEnable(false)
         .init();
