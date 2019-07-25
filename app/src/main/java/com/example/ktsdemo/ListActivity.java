@@ -2,6 +2,7 @@ package com.example.ktsdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.ktsdemo.adapter.KTSListAdapter;
+import com.example.ktsdemo.base.BaseActivity;
 import com.example.ktsdemo.net.NetworkMgr1;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,7 +25,7 @@ import org.json.JSONObject;
 
 import static com.example.ktsdemo.util.CommonUtils.IP;
 
-public class ListActivity extends AppCompatActivity {
+public class ListActivity extends BaseActivity {
 
   private static final String FilePath = "/Users/merlin720/kts/document";
   private static final String getFiles = IP + ":8080/test/queryFiles.do";
@@ -32,6 +34,10 @@ public class ListActivity extends AppCompatActivity {
   private KTSListAdapter adapter;
 
   private List<String> mContentData;
+
+  @Override protected int setLayoutId() {
+    return R.layout.activity_list;
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,7 @@ public class ListActivity extends AppCompatActivity {
     setListener();
   }
 
-  private void initView() {
+  protected void initView() {
     mRecyclerView = findViewById(R.id.list_recycler_view);
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
     mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -51,7 +57,10 @@ public class ListActivity extends AppCompatActivity {
     mRecyclerView.setAdapter(adapter);
   }
 
-  private void initData() {
+  /**
+   * 初始化数据
+   */
+  protected void initData() {
     mContentData = new ArrayList<>();
     getFiles();
   }
@@ -92,7 +101,7 @@ public class ListActivity extends AppCompatActivity {
         });
   }
 
-  private void setListener() {
+  protected void setListener() {
     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
       @Override public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         if (mContentData.size()>0){

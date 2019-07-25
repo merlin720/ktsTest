@@ -21,17 +21,26 @@
       android:supportsRtl="true"
       android:networkSecurityConfig="@xml/network_security_config"
       android:theme="@style/AppTheme">
-    <activity android:name=".MainActivity">
+    <activity android:name=".MainActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.Transparent" >
 
     </activity>
-    <activity android:name=".ListActivity">
+    <activity android:name=".ListActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.Transparent" >
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".SecondActivity"/>
+    <activity android:name=".SecondActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.Transparent" />
   </application>
 
 </manifest>

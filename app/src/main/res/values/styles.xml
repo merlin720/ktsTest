@@ -7,5 +7,21 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>
+  <!--有进出动画 背景透明-->
+  <style name="Theme.Transparent" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="android:colorBackgroundCacheHint">@null</item>
+    <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
+    <item name="android:windowIsTranslucent">false</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="windowActionBar">false</item>
+    <item name="windowActionBarOverlay">true</item>
+    <item name="windowNoTitle">true</item>
+  </style>
 
+  <style name="ActivityAnimation" parent="@android:style/Animation">
+    <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+    <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+    <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+  </style>
 </resources>

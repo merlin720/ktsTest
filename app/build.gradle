@@ -11,10 +11,38 @@ android {
     versionName "1.0"
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
-  buildTypes {
+  signingConfigs {
     release {
+      keyAlias 'kts'
+      keyPassword 'kts123456'
+      storeFile file('./kts.key')
+      storePassword 'kts123456'
+      v1SigningEnabled true
+
+    }
+
+    debug {
+      keyAlias 'kts'
+      keyPassword 'kts123456'
+      storeFile file('./kts.key')
+      storePassword 'kts123456'
+    }
+  }
+  buildTypes {
+    debug {
+      debuggable true
       minifyEnabled false
+      signingConfig signingConfigs.debug
+      buildConfigField("boolean","ISRELEASE","${IS_RELEASE}")
+    }
+    release {
+      debuggable false
+      minifyEnabled true
+      shrinkResources true //压缩资源
+      zipAlignEnabled true
+      signingConfig signingConfigs.release
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      buildConfigField("boolean","ISRELEASE","${IS_RELEASE}")
     }
   }
   compileOptions {
@@ -39,6 +67,9 @@ dependencies {
   implementation dep.gson
   implementation dep.hello_chart
   implementation dep.brvah
+  implementation dep.eventbus
+  implementation dep.immersionbar
+  implementation dep.immersionbarfragment
 
 
 }
