@@ -3,6 +3,7 @@
   <string name="next">next</string>
   <string name="update">update</string>
   <string name="get_path">getPath</string>
-  <string name="main_list">列表页</string>
+  <string name="main_list">列表</string>
   <string name="setting">设置页</string>
+  <string name="setting_detail">设置详情</string>
 </resources>

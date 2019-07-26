@@ -13,5 +13,9 @@ public class CommonUtils {
   public static final String IP = "http://192.168.1.219";
   public static final String PATH = "/Users/merlin720/kts/document/";
   public static final String SETTING_PATH = "/Users/merlin720/kts/document/config/testcfg/";
+
+  public static final String GET_FILE_CONTENT_URL = IP + ":8080/test/queryFileContent.do";
+  public static final String UPDATE_FILE_URL = IP + ":8080/test/updateFileContent.do";
+  public static final String UPDATE_FILE_PATH = "/Users/merlin720/kts/document/update.txt";
   //public static final String PATH = "E:\\data_R\\jjj\\niuzhuanpilao.xml\\";
 }

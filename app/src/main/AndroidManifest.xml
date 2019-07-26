@@ -50,6 +50,11 @@
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:screenOrientation="portrait"
         android:theme="@style/Theme.Transparent"/>
+    <activity
+        android:name=".SettingContentListActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.Transparent"/>
   </application>
 
 </manifest>

@@ -44,12 +44,7 @@ public class ListActivity extends BaseActivity {
     return R.layout.activity_list;
   }
 
-  //@Override
-  //protected void onCreate(Bundle savedInstanceState) {
-  //  super.onCreate(savedInstanceState);
-  //  setContentView(R.layout.activity_list);
-  //
-  //}
+
 
   @Override
   protected void initView() {

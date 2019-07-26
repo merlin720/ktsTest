@@ -1,5 +1,6 @@
 package com.example.ktsdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -43,6 +44,7 @@ public class SettingActivity extends BaseActivity {
   @Override protected void initView() {
     super.initView();
     titleLayout.setLeftImage(R.drawable.left_arrow);
+    titleLayout.setLeftMargin(20);
     titleLayout.setMiddleTitle(getString(R.string.setting));
     titleLayout.getMiddleView().getPaint().setFakeBoldText(true);
     titleLayout.setMiddleTextSize(19);
@@ -109,11 +111,11 @@ public class SettingActivity extends BaseActivity {
     });
     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
       @Override public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        //if (mContentData.size()>0){
-        //  Intent intent = new Intent(SettingActivity.this,MainActivity.class);
-        //  intent.putExtra("path", mContentData.get(position));
-        //  startActivity(intent);
-        //}
+        if (mContentData.size()>0){
+          Intent intent = new Intent(SettingActivity.this,SettingContentListActivity.class);
+          intent.putExtra("path", mContentData.get(position));
+          startActivity(intent);
+        }
       }
     });
   }

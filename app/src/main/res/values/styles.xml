@@ -42,4 +42,19 @@
     <attr format="integer" name="rightImage"/>
     <attr format="integer" name="rightImage2"/>
   </declare-styleable>
+
+  <style name="Dialog_Fullscreen">
+    <item name="android:backgroundDimAmount">0.5</item>
+    <item name="android:windowIsFloating">true</item>
+    <!--是否浮现在activity之上-->
+    <item name="android:windowIsTranslucent">true</item>
+    <!--半透明-->
+    <item name="android:windowNoTitle">false</item>
+    <!--无标题-->
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <!--背景透明-->
+    <item name="android:backgroundDimEnabled">true</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+  </style>
 </resources>

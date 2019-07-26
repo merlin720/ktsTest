@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.example.ktsdemo.base.BaseActivity;
 import com.example.ktsdemo.net.NetworkMgr1;
+import com.example.ktsdemo.util.CommonUtils;
 import com.example.ktsdemo.util.FileUtils;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -25,6 +26,8 @@ import org.json.JSONObject;
 
 import static com.example.ktsdemo.util.CommonUtils.IP;
 import static com.example.ktsdemo.util.CommonUtils.PATH;
+import static com.example.ktsdemo.util.CommonUtils.UPDATE_FILE_PATH;
+import static com.example.ktsdemo.util.CommonUtils.UPDATE_FILE_URL;
 
 /**
  * @author merlin720
@@ -33,9 +36,9 @@ import static com.example.ktsdemo.util.CommonUtils.PATH;
  */
 public class MainActivity extends BaseActivity {
 
-  private static final String url = IP + ":8080/test/queryFileContent.do";
 
-  private static final String updateUrl = IP + ":8080/test/updateFileContent.do";
+
+
   LineChart chart;
   private String path;
 
@@ -121,7 +124,7 @@ public class MainActivity extends BaseActivity {
     HashMap<String, String> params = new HashMap<>();
     params.put("filePath", path);
     NetworkMgr1.getInstance()
-        .post(String.class, url, params, new CallBack<String>() {
+        .post(String.class, CommonUtils.GET_FILE_CONTENT_URL, params, new CallBack<String>() {
           @Override
           public void onResponse(String response) {
             JSONObject jsonObject = null;
@@ -155,9 +158,10 @@ public class MainActivity extends BaseActivity {
     HashMap<String, String> params = new HashMap<>();
     params.put("key1", "key1");
     params.put("value", "ceshi");
-    params.put("filePath", "/Users/merlin720/kts/document/update.txt");
+    params.put("signal", ":");
+    params.put("filePath", UPDATE_FILE_PATH);
     NetworkMgr1.getInstance()
-        .post(String.class, updateUrl, params, new CallBack<String>() {
+        .post(String.class, UPDATE_FILE_URL, params, new CallBack<String>() {
           @Override
           public void onResponse(String response) {
             JSONObject jsonObject = null;
