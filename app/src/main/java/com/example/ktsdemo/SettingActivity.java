@@ -44,7 +44,7 @@ public class SettingActivity extends BaseActivity {
   @Override protected void initView() {
     super.initView();
     titleLayout.setLeftImage(R.drawable.left_arrow);
-    titleLayout.setLeftMargin(20);
+    titleLayout.setLeftMargin(18);
     titleLayout.setMiddleTitle(getString(R.string.setting));
     titleLayout.getMiddleView().getPaint().setFakeBoldText(true);
     titleLayout.setMiddleTextSize(19);
@@ -55,6 +55,7 @@ public class SettingActivity extends BaseActivity {
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
     mRecyclerView.setLayoutManager(linearLayoutManager);
     adapter = new KTSListAdapter();
+
     mRecyclerView.setAdapter(adapter);
   }
   /**

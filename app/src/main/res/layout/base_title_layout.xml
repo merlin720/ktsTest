@@ -5,15 +5,6 @@
     android:layout_height="48dp"
     >
 
-  <TextView
-      android:id="@+id/tvLeftTitle"
-      android:layout_width="wrap_content"
-      android:layout_height="match_parent"
-      android:layout_alignParentLeft="true"
-      android:layout_alignParentStart="true"
-      android:layout_centerVertical="true"
-      android:textColor="@android:color/black"
-      />
 
   <TextView
       android:id="@+id/tvMiddleTitle"
@@ -28,10 +19,16 @@
       android:maxLines="1"
       android:maxWidth="@dimen/d_220"
       android:textColor="@android:color/black"
-      android:layout_toLeftOf="@+id/tvRightTitle"
-      android:layout_toRightOf="@+id/tvLeftTitle"
       />
-
+  <TextView
+      android:id="@+id/tvLeftTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:layout_centerVertical="true"
+      android:textColor="@android:color/black"
+      />
   <com.example.ktsdemo.CustomTextView
       android:id="@+id/tvRightTitle"
       android:layout_width="wrap_content"

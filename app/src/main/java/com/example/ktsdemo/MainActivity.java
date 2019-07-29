@@ -51,7 +51,9 @@ public class MainActivity extends BaseActivity {
   }
 
   protected void initView() {
-    titleLayout.setMiddleTitle(getString(R.string.main_list));
+    titleLayout.setLeftImage(R.drawable.left_arrow);
+    titleLayout.setLeftMargin(18);
+    titleLayout.setMiddleTitle(getString(R.string.chart));
     titleLayout.getMiddleView().getPaint().setFakeBoldText(true);
     titleLayout.setMiddleTextSize(19);
     titleLayout.setMiddleTextColor(ContextCompat.getColor(this, R.color.col_333333));
@@ -59,14 +61,16 @@ public class MainActivity extends BaseActivity {
     titleLayout.setRightAlpha(1);
     titleLayout.setRightTextSize(18);
     titleLayout.setRightTextColor(ContextCompat.getColor(this, R.color.col_333333));
+
     chart = findViewById(R.id.lineChart1);
 
     chart.getDescription().setEnabled(false);
-    //是否可以缩放、移动、触摸
-    chart.setTouchEnabled(true);
-    chart.setDragEnabled(true);
 
-    chart.setPinchZoom(true);
+    //是否可以缩放、移动、触摸
+    //chart.setTouchEnabled(true);
+    //chart.setDragEnabled(true);
+
+    //chart.setPinchZoom(true);
 
     chart.setDrawGridBackground(false);
   }
@@ -84,6 +88,10 @@ public class MainActivity extends BaseActivity {
     });
 
     titleLayout.setTitleClickListener(new CustomTitleBar.TitleUpdateListener() {
+      @Override public void onLeftClick() {
+        finish();
+      }
+
       @Override public void onRightClick() {
         startActivity(new Intent(MainActivity.this, SettingActivity.class));
       }
