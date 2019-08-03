@@ -34,17 +34,26 @@
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:screenOrientation="landscape"
         android:theme="@style/Theme.Transparent">
+
+    </activity>
+    <activity
+        android:name=".SecondActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="portrait"
+        android:theme="@style/Theme.Transparent">
+
+    </activity>
+    <activity
+        android:name=".ButtonActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="landscape"
+        android:theme="@style/Theme.Transparent">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity
-        android:name=".SecondActivity"
-        android:configChanges="orientation|keyboardHidden|screenSize"
-        android:screenOrientation="landscape"
-        android:theme="@style/Theme.Transparent"/>
     <activity
         android:name=".SettingActivity"
         android:configChanges="orientation|keyboardHidden|screenSize"

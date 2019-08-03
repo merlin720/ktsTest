@@ -1,6 +1,8 @@
 package com.example.ktsdemo;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +13,20 @@ import com.example.ktsdemo.base.BaseActivity;
 import com.example.ktsdemo.net.NetworkMgr1;
 import com.example.ktsdemo.util.CommonUtils;
 import com.example.ktsdemo.util.FileUtils;
+import com.example.ktsdemo.util.SizeUtils;
+import com.example.ktsdemo.view.MyMarkerView;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.merlin.network.CallBack;
@@ -36,10 +48,7 @@ import static com.example.ktsdemo.util.CommonUtils.UPDATE_FILE_URL;
  */
 public class MainActivity extends BaseActivity {
 
-
-
-
-  LineChart chart;
+  LineChart mLineChart;
   private String path;
 
   @Override protected int setLayoutId() {
@@ -62,9 +71,31 @@ public class MainActivity extends BaseActivity {
     titleLayout.setRightTextSize(18);
     titleLayout.setRightTextColor(ContextCompat.getColor(this, R.color.col_333333));
 
-    chart = findViewById(R.id.lineChart1);
+    mLineChart = findViewById(R.id.lineChart1);
 
-    chart.getDescription().setEnabled(false);
+    //Description description = new Description();
+    //description.setText("输入扭矩（N·m）");
+    //description.setTextColor(Color.RED);
+    ////description.setTextAlign(Paint.Align.RIGHT );
+    //description.setTextSize(18);
+    //description.setPosition(SizeUtils.dp2px(160), SizeUtils.dp2px(20));
+
+    //mLineChart.setDescription(description);
+    mLineChart.getDescription().setEnabled(false);
+
+    // *********************滑动相关*************************** //
+    mLineChart.setTouchEnabled(true); // 所有触摸事件,默认true
+    mLineChart.setDragEnabled(true);    // 可拖动,默认true
+    mLineChart.setScaleEnabled(true);   // 两个轴上的缩放,X,Y分别默认为true
+    mLineChart.setScaleXEnabled(true);  // X轴上的缩放,默认true
+    mLineChart.setScaleYEnabled(true);  // Y轴上的缩放,默认true
+    mLineChart.setPinchZoom(true);  // X,Y轴同时缩放，false则X,Y轴单独缩放,默认false
+    mLineChart.setDoubleTapToZoomEnabled(true); // 双击缩放,默认true
+    mLineChart.setDragDecelerationEnabled(true);    // 抬起手指，继续滑动,默认true
+    mLineChart.setDragDecelerationFrictionCoef(
+        0.9f);   // 摩擦系数,[0-1]，较大值速度会缓慢下降，0，立即停止;1,无效值，并转换为0.9999.默认0.9f.
+
+    mLineChart.getAxisRight().setEnabled(false);    // 不绘制右侧的轴线
 
     //是否可以缩放、移动、触摸
     //chart.setTouchEnabled(true);
@@ -72,7 +103,65 @@ public class MainActivity extends BaseActivity {
 
     //chart.setPinchZoom(true);
 
-    chart.setDrawGridBackground(false);
+    mLineChart.setDrawGridBackground(false);
+    XAxis xAxis = mLineChart.getXAxis();
+    YAxis yAxis = mLineChart.getAxisLeft();
+    //设置y轴的位置
+    //  yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+
+    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+    //设置xy轴线的宽度
+    xAxis.setAxisLineWidth(2f);
+    yAxis.setAxisLineWidth(2f);
+    //设置x轴的颜色
+    xAxis.setAxisLineColor(Color.BLACK);
+    //设置
+    xAxis.setTextSize(14);
+    //xAxis.setAxisMaximum(3);
+    //xAxis.setAxisMinimum(1);
+    xAxis.setLabelCount(4);
+    //xAxis.setXOffset(SizeUtils.dp2px(150));
+
+    yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+    yAxis.setDrawTopYLabelEntry(true);
+    yAxis.setAxisLineColor(Color.BLACK);
+    yAxis.setTextSize(14);
+    //最大的数在下边，最小的在上边。
+    //yAxis.setInverted(true);
+    yAxis.setValueFormatter(new ValueFormatter(){
+      @Override public String getFormattedValue(float value) {
+        return CommonUtils.getTwoPoint(String.valueOf(value)) + "N";
+      }
+    });
+    xAxis.setValueFormatter(new ValueFormatter() {
+      @Override public String getFormattedValue(float value) {
+        return CommonUtils.getOnePoint(String.valueOf(value)) + "m";
+      }
+
+      @Override public String getAxisLabel(float value, AxisBase axis) {
+        return super.getAxisLabel(value, axis);
+      }
+    });
+
+    /***折线图例 标签 设置***/
+    Legend legend = mLineChart.getLegend();
+    //设置显示类型，LINE CIRCLE SQUARE EMPTY 等等 多种方式，查看LegendForm 即可
+    legend.setForm(Legend.LegendForm.LINE);
+    legend.setTextSize(18f);
+    //显示位置 左下方
+    legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+    legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+    legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+    //是否绘制在图表里面
+    legend.setDrawInside(true);
+
+    //// create marker to display box when values are selected
+    //MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
+    //
+    //// Set the marker to the chart
+    //mv.setChartView(mLineChart);
+    //mLineChart.setMarker(mv);
+
   }
 
   protected void setListener() {
@@ -124,7 +213,6 @@ public class MainActivity extends BaseActivity {
 
   /**
    * 通过获取过来的文件名字，获取文件的内容加载到图标上。
-   * @param savedInstanceState
    */
   @Override
   protected void initData(@Nullable Bundle savedInstanceState) {
@@ -142,8 +230,8 @@ public class MainActivity extends BaseActivity {
               String message = jsonObject.getString("message");
               String str = jsonObject.getString("data");
               if ("0".equals(code)) {
-                chart.setData(generateLineData1(FileUtils.loadData(str)));
-                chart.animateX(3000);
+                mLineChart.setData(generateLineData1(FileUtils.loadData(str)));
+                mLineChart.animateX(3000);
               } else {
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
               }
@@ -197,10 +285,10 @@ public class MainActivity extends BaseActivity {
   protected LineData generateLineData1(List<Entry> list) {
 
     ArrayList<ILineDataSet> sets = new ArrayList<>();
-    LineDataSet ds1 = new LineDataSet(list, "Sine function");
+    LineDataSet ds1 = new LineDataSet(list, "输入扭矩（N·m）");
     ds1.setLineWidth(2f);
-
     ds1.setDrawCircles(false);
+    ds1.disableDashedLine();
 
     ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
 
