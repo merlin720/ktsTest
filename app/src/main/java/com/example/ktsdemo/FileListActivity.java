@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.ktsdemo.adapter.KTSListAdapter;
 import com.example.ktsdemo.base.BaseActivity;
-import com.example.ktsdemo.bean.DotsBean;
 import com.example.ktsdemo.net.NetworkMgr1;
+import com.example.ktsdemo.util.CommonUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.merlin.network.CallBack;
@@ -30,16 +30,14 @@ import static com.example.ktsdemo.util.CommonUtils.PATH;
  * @author merlin720
  * 数据文件的列表页
  */
-public class ListActivity extends BaseActivity {
+public class FileListActivity extends BaseActivity {
 
-  private static final String getFiles = IP + ":8080/test/queryFiles.do";
+
   private RecyclerView mRecyclerView;
 
   private KTSListAdapter adapter;
 
   private List<String> mContentData;
-
-  private String path;
 
   @Override protected int setLayoutId() {
     return R.layout.activity_list;
@@ -67,17 +65,15 @@ public class ListActivity extends BaseActivity {
   @Override
   protected void initData(@Nullable Bundle savedInstanceState) {
     mContentData = new ArrayList<>();
-    path = PATH;
-    path = getIntent().getStringExtra("path");
     getFiles();
   }
 
   private void getFiles() {
     HashMap<String, String> params = new HashMap<>();
-    params.put("filePath", path);
-    params.put("endStr", ".andr");
+    params.put("filePath", CommonUtils.NEW_DATA_FILE_PATH);
+
     NetworkMgr1.getInstance()
-        .post(String.class, getFiles, params, new CallBack<String>() {
+        .post(String.class, CommonUtils.getFilesInPathUrl, params, new CallBack<String>() {
           @Override
           public void onResponse(String response) {
             JSONObject jsonObject = null;
@@ -95,7 +91,7 @@ public class ListActivity extends BaseActivity {
                 mContentData.addAll(list);
                 adapter.setNewData(list);
               } else {
-                Toast.makeText(ListActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(FileListActivity.this, message, Toast.LENGTH_LONG).show();
               }
             } catch (JSONException e) {
               e.printStackTrace();
@@ -113,7 +109,7 @@ public class ListActivity extends BaseActivity {
     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
       @Override public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         if (mContentData.size()>0){
-          Intent intent = new Intent(ListActivity.this,MainActivity.class);
+          Intent intent = new Intent(FileListActivity.this,ListActivity.class);
           intent.putExtra("path", mContentData.get(position));
           startActivity(intent);
         }

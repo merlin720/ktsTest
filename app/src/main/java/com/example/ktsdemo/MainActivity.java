@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import com.example.ktsdemo.base.BaseActivity;
+import com.example.ktsdemo.bean.DotsBean;
 import com.example.ktsdemo.net.NetworkMgr1;
 import com.example.ktsdemo.util.CommonUtils;
 import com.example.ktsdemo.util.FileUtils;
@@ -29,7 +30,10 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.merlin.network.CallBack;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +60,7 @@ public class MainActivity extends BaseActivity {
   }
 
   private void getIntentData() {
-    path = PATH + getIntent().getStringExtra("path");
+    path = getIntent().getStringExtra("path");
   }
 
   protected void initView() {
@@ -230,7 +234,16 @@ public class MainActivity extends BaseActivity {
               String message = jsonObject.getString("message");
               String str = jsonObject.getString("data");
               if ("0".equals(code)) {
-                mLineChart.setData(generateLineData1(FileUtils.loadData(str)));
+
+                Type type1 = new TypeToken<ArrayList<String>>() {
+                }.getType();
+                Gson gson1= new Gson();
+                List<String> list1 = gson1.fromJson(str, type1);
+                Type type = new TypeToken<ArrayList<ArrayList<DotsBean>>>() {
+                }.getType();
+                Gson gson = new Gson();
+                List<List<DotsBean>> list = gson.fromJson(list1.get(0), type);
+                mLineChart.setData(generateLineData1(list.get(0)));
                 mLineChart.animateX(3000);
               } else {
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
@@ -282,18 +295,23 @@ public class MainActivity extends BaseActivity {
         });
   }
 
-  protected LineData generateLineData1(List<Entry> list) {
+  protected LineData generateLineData1(List<DotsBean>  list) {
 
     ArrayList<ILineDataSet> sets = new ArrayList<>();
-    LineDataSet ds1 = new LineDataSet(list, "输入扭矩（N·m）");
-    ds1.setLineWidth(2f);
-    ds1.setDrawCircles(false);
-    ds1.disableDashedLine();
+    int i = 0;
+    for (DotsBean dotsBean : list) {
+      i++;
+      LineDataSet ds1 = new LineDataSet(FileUtils.loadData(dotsBean.getDots()), dotsBean.getDesc());
+      ds1.setLineWidth(2f);
+      ds1.setDrawCircles(false);
+      ds1.disableDashedLine();
 
-    ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
+      ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[i]);
 
-    // load DataSets from files in assets folder
-    sets.add(ds1);
+      // load DataSets from files in assets folder
+      sets.add(ds1);
+    }
+
 
     LineData d = new LineData(sets);
     //d.setValueTypeface(tf);

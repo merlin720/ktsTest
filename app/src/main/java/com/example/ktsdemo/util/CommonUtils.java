@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
  */
 public class CommonUtils {
   public static final boolean isDebug = !BuildConfig.ISRELEASE;
-  public static final String IP = "http://192.168.1.234";
+  public static final String IP = "http://192.168.1.83";
   public static final String PATH = "/Users/merlin720/kts/document/";
   public static final String SETTING_PATH = "/Users/merlin720/kts/document/config/testcfg/";
 
@@ -20,8 +20,12 @@ public class CommonUtils {
   public static final String UPDATE_FILE_PATH = "/Users/merlin720/kts/document/update.txt";
   //public static final String PATH = "E:\\data_R\\jjj\\niuzhuanpilao.xml\\";
 
+  //配置开始关闭的文件路径
+  public static final String START_STOP_PATH = "C:\\keyen\\zsprog\\config\\syspricfg\\rio.ini";
+  //数据存储的文件路径
+  public static final String NEW_DATA_FILE_PATH = "E:\\runt\\type16\\工位1-模拟路谱试验.xml";
 
-  public static final String START_STOP_PATH = "";
+  public static final String getFilesInPathUrl = IP + ":8080/test/queryFilesInPath.do";
 
   public static String getTwoPoint(String num) {
     try {

@@ -19,6 +19,9 @@ import java.util.concurrent.TimeUnit;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * 第一个启动的界面
+ */
 public class ButtonActivity extends BaseActivity {
 
   private TextView look;
@@ -77,7 +80,7 @@ public class ButtonActivity extends BaseActivity {
    * 跳转到文件列表页
    */
   private void goToDetail() {
-    startActivity(new Intent(ButtonActivity.this, ListActivity.class));
+    startActivity(new Intent(ButtonActivity.this, FileListActivity.class));
   }
 
   private void goStart() {
@@ -105,7 +108,6 @@ public class ButtonActivity extends BaseActivity {
               String code = jsonObject.getString("code");
               String message = jsonObject.getString("message");
               if ("0".equals(code)) {
-
                 Toast.makeText(ButtonActivity.this, message, Toast.LENGTH_LONG).show();
               } else {
                 Toast.makeText(ButtonActivity.this, message, Toast.LENGTH_LONG).show();

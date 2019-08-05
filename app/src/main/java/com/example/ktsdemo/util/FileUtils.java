@@ -112,6 +112,29 @@ public class FileUtils {
     return entries;
   }
 
+  /**
+   * 把返回结果转换成list
+   */
+  public static List<Entry> loadData(List<String> list) {
+    List<Entry> entries = new ArrayList<>();
+    try {
+
+
+
+      for (String line : list) {
+        String s = line.replace("\t", "#");
+        String[] split = s.split("#");
+        if (null != split[0] && null != split[1]) {
+          entries.add(new Entry(Float.parseFloat(split[0]), Float.parseFloat(split[1])));
+        }
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return entries;
+  }
+
   public static List<String> getFilesInPath(String path) {
     List<String> list = new ArrayList<>();
     File file = new File(path);
