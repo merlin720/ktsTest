@@ -1,12 +1,14 @@
 package com.example.ktsdemo;
 
 import android.content.Intent;
-import android.widget.Button;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
 import com.example.ktsdemo.base.BaseActivity;
+import com.example.ktsdemo.custom.CustomSettingActivity;
 import com.example.ktsdemo.net.NetworkMgr1;
 import com.example.ktsdemo.util.CommonUtils;
 import com.example.ktsdemo.util.SizeUtils;
@@ -27,8 +29,10 @@ public class ButtonActivity extends BaseActivity {
   private TextView look;
   private TextView start;
   private TextView stop;
+  private TextView setting;
 
   private ImageView imageView;
+  private ImageView imageViewGif;
 
   @Override protected int setLayoutId() {
     return R.layout.activity_button;
@@ -40,7 +44,9 @@ public class ButtonActivity extends BaseActivity {
     look = findViewById(R.id.detail);
     start = findViewById(R.id.start);
     stop = findViewById(R.id.stop);
+    setting = findViewById(R.id.setting);
     imageView = findViewById(R.id.image);
+    imageViewGif = findViewById(R.id.image_gif);
 
     float width = SizeUtils.getDisplayWidth() * 0.7f;
     float height = SizeUtils.getDisplayHeight() * 0.7f;
@@ -50,7 +56,9 @@ public class ButtonActivity extends BaseActivity {
     layoutParams.height = (int) (layoutParams.width * height / width);
     layoutParams.width = (int) width;
     imageView.setLayoutParams(layoutParams);
+    imageViewGif.setLayoutParams(layoutParams);
 
+    Glide.with(this).asGif().load(R.drawable.ezgif_com_video_to_gif).into(imageViewGif);
     Disposable disposable = RxView.clicks(look)
         .throttleFirst(500, TimeUnit.MICROSECONDS)
         .subscribe(new Consumer<Object>() {
@@ -74,6 +82,13 @@ public class ButtonActivity extends BaseActivity {
             goStop();
           }
         });
+    Disposable disposable3 = RxView.clicks(setting)
+        .throttleFirst(500, TimeUnit.MICROSECONDS)
+        .subscribe(new Consumer<Object>() {
+          @Override public void accept(Object o) throws Exception {
+            goSetting();
+          }
+        });
   }
 
   /**
@@ -83,14 +98,32 @@ public class ButtonActivity extends BaseActivity {
     startActivity(new Intent(ButtonActivity.this, FileListActivity.class));
   }
 
+  /**
+   * 让设备开始
+   */
   private void goStart() {
+    imageView.setVisibility(View.GONE);
+    imageViewGif.setVisibility(View.VISIBLE);
     update("run", "1");
   }
 
+  /**
+   * 让设备停止。
+   */
   private void goStop() {
+    imageView.setVisibility(View.VISIBLE);
+    imageViewGif.setVisibility(View.GONE);
     update("stop", "1");
   }
+  private void goSetting(){
+    startActivity(new Intent(ButtonActivity.this, CustomSettingActivity.class));
+  }
 
+  /**
+   * 修改某些文件的内容
+   * @param key
+   * @param value
+   */
   private void update(String key, String value) {
     HashMap<String, String> params = new HashMap<>();
     params.put("key1", key);

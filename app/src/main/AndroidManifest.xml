@@ -71,6 +71,16 @@
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:screenOrientation="landscape"
         android:theme="@style/Theme.Transparent"/>
+    <activity
+        android:name=".custom.CustomSettingActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="landscape"
+        android:theme="@style/Theme.Transparent"/>
+    <activity
+        android:name=".custom.ModelSettingActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:screenOrientation="landscape"
+        android:theme="@style/Theme.Transparent"/>
   </application>
 
 </manifest>

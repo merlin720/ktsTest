@@ -58,6 +58,7 @@ dependencies {
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation dep.espresso
   implementation dep.appcompat_v7
+  implementation dep.appcompat_v4
   implementation dep.recyclerview
   implementation dep.constraint
 
@@ -73,6 +74,9 @@ dependencies {
   implementation dep.rxjava
   implementation dep.rxandroid
   implementation dep.rxbinding2
+  implementation ("com.github.bumptech.glide:glide:4.8.0@aar") {
+    transitive = true
+  }
 
 
 }

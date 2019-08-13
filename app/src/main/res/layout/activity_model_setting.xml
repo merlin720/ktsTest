@@ -1,88 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity"
     >
-  <ImageView
-      android:id="@+id/image"
-      android:layout_width="wrap_content"
+  <com.example.ktsdemo.CustomTitleBar
+      android:id="@+id/title_layout"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginBottom="50dp"
-      android:src="@drawable/button_top"
+      android:clipToPadding="true"
+      app:middleTextColor="@color/col_333333"
+      app:middleTextSize="18sp"
+      app:rightTextColor="@color/col_333333"
+      app:rightTextSize="@dimen/s_14"
       />
-  <ImageView
-      android:id="@+id/image_gif"
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="#e1e1e1"
+      />
+
+  <TextView
+      android:id="@+id/model_setting_text"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_height="50dp"
+      android:text="@string/current_model"
+      android:gravity="center"
+      android:textSize="18sp"
       android:layout_gravity="center_horizontal"
-      android:layout_marginBottom="50dp"
-      android:visibility="gone"
-      android:src="@drawable/button_top"
+      android:textColor="#333333"
+
       />
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/model_setting_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    />
+
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_marginStart="150dp"
-      android:layout_marginEnd="150dp"
+      android:layout_height="80dp"
+      android:layout_marginStart="50dp"
+      android:layout_marginEnd="50dp"
+      android:layout_marginTop="50dp"
       android:layout_gravity="bottom"
       android:layout_marginBottom="30dp"
       >
     <TextView
-        android:id="@+id/detail"
+        android:id="@+id/create_tv"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_height="match_parent"
-        android:text="@string/look"
-        android:textColor="@color/col_333333"
-        android:background="@drawable/button_bg"
+        android:text="@string/add"
+        android:textColor="@color/white"
+        android:background="@drawable/selector_blue"
         android:textSize="18sp"
         android:gravity="center"
         />
     <TextView
-        android:id="@+id/start"
+        android:id="@+id/delete_tv"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_height="match_parent"
-        android:text="@string/start"
-        android:textColor="@color/col_333333"
+        android:text="@string/delete"
+        android:textColor="@color/white"
         android:textSize="18sp"
-        android:background="@drawable/button_bg"
+        android:background="@drawable/selector_blue"
         android:gravity="center"
         />
     <TextView
-        android:id="@+id/stop"
+        android:id="@+id/update_tv"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_height="match_parent"
-        android:text="@string/stop"
-        android:textColor="@color/col_333333"
+        android:text="@string/use"
+        android:textColor="@color/white"
+        android:background="@drawable/selector_blue"
         android:textSize="18sp"
-        android:background="@drawable/button_bg"
         android:gravity="center"
         />
     <TextView
-        android:id="@+id/setting"
+        android:id="@+id/exit"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_height="match_parent"
-        android:text="@string/setting_str"
-        android:textColor="@color/col_333333"
-        android:background="@drawable/button_bg"
+        android:text="@string/exit"
+        android:textColor="@color/white"
         android:textSize="18sp"
+        android:background="@drawable/selector_blue"
         android:gravity="center"
         />
   </LinearLayout>
-</FrameLayout>
+</LinearLayout>

@@ -11,4 +11,16 @@
   <string name="start">开始</string>
   <string name="stop">结束</string>
   <string name="look">查看历史</string>
+  <string name="setting_str">设置</string>
+  <string name="model_setting">型号设置</string>
+  <string name="system_param">系统参数</string>
+  <string name="curve_parameter">曲线参数</string>
+  <string name="process_standard">过程与标准</string>
+  <string name="process_count_setting">加工计数设置</string>
+  <string name="exit">退出</string>
+  <string name="add">添加</string>
+  <string name="delete">删除</string>
+  <string name="use">应用</string>
+  <string name="cancel">返回</string>
+  <string name="current_model">当前型号：%1$s</string>
 </resources>
