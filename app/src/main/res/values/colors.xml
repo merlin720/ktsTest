@@ -6,4 +6,6 @@
   <color name="white">#ffffff</color>
   <color name="col_333333">#333333</color>
   <color name="blue">#ff33b5e5</color>
+  <color name="blue_dark">#0000CD</color>
+  <color name="gray">#ddd</color>
 </resources>

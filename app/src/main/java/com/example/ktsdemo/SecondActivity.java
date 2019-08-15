@@ -23,6 +23,10 @@ import static lecho.lib.hellocharts.util.ChartUtils.COLOR_ORANGE;
 import static lecho.lib.hellocharts.util.ChartUtils.COLOR_RED;
 import static lecho.lib.hellocharts.util.ChartUtils.COLOR_VIOLET;
 
+/**
+ * @author merlin720
+ * @desc
+ */
 public class SecondActivity extends BaseActivity {
   private boolean hasAxes = true;
   private boolean hasAxesNames = true;

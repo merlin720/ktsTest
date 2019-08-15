@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.ktsdemo.base.BaseActivity;
 import com.example.ktsdemo.custom.CustomSettingActivity;
+import com.example.ktsdemo.custom.ProcessStandardSettingActivity;
 import com.example.ktsdemo.net.NetworkMgr1;
 import com.example.ktsdemo.util.CommonUtils;
 import com.example.ktsdemo.util.SizeUtils;
@@ -105,6 +106,7 @@ public class ButtonActivity extends BaseActivity {
     imageView.setVisibility(View.GONE);
     imageViewGif.setVisibility(View.VISIBLE);
     update("run", "1");
+
   }
 
   /**

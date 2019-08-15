@@ -4,6 +4,7 @@
   <dimen name="status_bar_height">0dp</dimen>
 
   <dimen name="d_220">220dp</dimen>
+  <dimen name="d_20">20dp</dimen>
   <dimen name="d_48">48dp</dimen>
   <dimen name="d_10">10dp</dimen>
 </resources>

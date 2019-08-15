@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.ktsdemo.CustomTitleBar;
-import com.example.ktsdemo.FileListActivity;
 import com.example.ktsdemo.R;
-
-import com.example.ktsdemo.SettingContentListActivity;
 import com.example.ktsdemo.adapter.KTSNewListAdapter;
 import com.example.ktsdemo.base.BaseActivity;
-import com.example.ktsdemo.base.Test;
 import com.example.ktsdemo.bean.ModelSettingBean;
 import com.example.ktsdemo.net.NetworkMgr1;
 import com.example.ktsdemo.util.CommonUtils;
@@ -41,12 +38,11 @@ import java.util.concurrent.TimeUnit;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.ktsdemo.util.CommonUtils.IP;
-import static com.example.ktsdemo.util.CommonUtils.SETTING_PATH;
-
 /**
  * @author merlin
- * 设置页列表界面
+ * @date
+ * desc 型号设置界面
+ *
  */
 public class ModelSettingActivity extends BaseActivity {
 
@@ -94,7 +90,7 @@ public class ModelSettingActivity extends BaseActivity {
     model_setting_text = findViewById(R.id.model_setting_text);
   }
 
-  private static final String path = CommonUtils.NEW_SETTING_PATH + "syscfg/varsave.ini";
+
 
   /**
    * 初始化数据
@@ -107,7 +103,7 @@ public class ModelSettingActivity extends BaseActivity {
 
   private void getFiles() {
     HashMap<String, String> params = new HashMap<>();
-    params.put("systemFilePath", path);
+    params.put("systemFilePath", CommonUtils.CURRENT_SYSTEM_PATH);
     params.put("filePath", CommonUtils.NEW_SETTING_PATH + "testcfg/");
     params.put("key", "mPriName");
 
@@ -293,7 +289,7 @@ public class ModelSettingActivity extends BaseActivity {
     params.put("value", value);
     params.put("needAddF", "1");
     params.put("signal", "=");
-    params.put("filePath", path);
+    params.put("filePath", CommonUtils.CURRENT_SYSTEM_PATH);
     NetworkMgr1.getInstance()
         .post(String.class, CommonUtils.UPDATE_FILE_URL, params, new CallBack<String>() {
           @Override
@@ -333,8 +329,10 @@ public class ModelSettingActivity extends BaseActivity {
     button.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         String valueStr = value.getText().toString();
-        createFile(valueStr);
-        hideDialog();
+        if (!TextUtils.isEmpty(valueStr)) {
+          createFile(valueStr);
+          hideDialog();
+        }
       }
     });
     AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Dialog_Fullscreen);

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
+import com.example.ktsdemo.ButtonActivity;
 import com.example.ktsdemo.CustomTitleBar;
 import com.example.ktsdemo.R;
 import com.example.ktsdemo.base.BaseActivity;
@@ -139,7 +140,7 @@ public class CustomSettingActivity extends BaseActivity {
    * 过程与标准
    */
   private void setProcessStandard() {
-
+    startActivity(new Intent(CustomSettingActivity.this, ProcessStandardSettingActivity.class));
   }
 
   /**
