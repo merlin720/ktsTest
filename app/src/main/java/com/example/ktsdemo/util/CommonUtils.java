@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 public class CommonUtils {
   public static final boolean isDebug = !BuildConfig.ISRELEASE;
   //public static final String IP = "http://192.168.1.83";
-  public static final String IP = "http://192.168.1.234";
+  public static final String IP = "http://192.168.1.235";
   public static final String PATH = "/Users/merlin720/kts/document/";
   public static final String SETTING_PATH = "/Users/merlin720/kts/document/config/testcfg/";
 
@@ -40,6 +40,7 @@ public class CommonUtils {
   public static final String SETTING_ADD_FILE = IP + ":8080/setting/addFile.do";
 
   public static final String GET_PROCESS_SETTING = IP + ":8080/setting/getProcessSeting.do ";
+  public static final String PROCCESS_UPDATE_CONTENT = IP + ":8080/setting/updateFileContent.do ";
 
   public static String getTwoPoint(String num) {
     try {

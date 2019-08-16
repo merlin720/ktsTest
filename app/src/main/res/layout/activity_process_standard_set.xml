@@ -27,9 +27,9 @@
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       android:background="@color/gray"
-      android:orientation="horizontal"
+      android:orientation="vertical"
       >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,8 +67,88 @@
           android:textSize="18sp"
           />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/d_20"
+        android:layout_marginStart="20dp"
+        >
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="25dp"
+          android:background="@drawable/setting_bg"
+          android:orientation="vertical"
+          android:paddingBottom="@dimen/d_20"
+          >
+        <include
+            layout="@layout/process_item_lin"
+            android:id="@+id/process_layout_3"
+            />
+        <include
+            layout="@layout/process_item_lin"
+            android:id="@+id/process_layout_4"
+            />
+        <include
+            layout="@layout/process_item_lin"
+            android:id="@+id/process_layout_5"
+            />
+        <include
+            layout="@layout/process_item_lin"
+            android:id="@+id/process_layout_6"
+            />
 
 
+      </LinearLayout>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="50dp"
+          android:layout_marginLeft="@dimen/d_20"
+          android:background="@color/gray"
+          android:gravity="center"
+          android:text="试中试验参数"
+          android:textColor="@color/blue_dark"
+          android:textSize="18sp"
+          />
+    </RelativeLayout>
+
+  </LinearLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:layout_marginStart="50dp"
+      android:layout_marginEnd="50dp"
+      android:layout_marginTop="50dp"
+      android:layout_gravity="bottom"
+      android:layout_marginBottom="30dp"
+      >
+
+    <TextView
+        android:id="@+id/update_tv"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="match_parent"
+        android:text="@string/sure"
+        android:textColor="@color/white"
+        android:background="@drawable/selector_blue"
+        android:textSize="18sp"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/exit"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="match_parent"
+        android:text="@string/cancel"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/selector_blue"
+        android:gravity="center"
+        />
   </LinearLayout>
 </LinearLayout>
 
