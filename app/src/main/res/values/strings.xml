@@ -24,5 +24,6 @@
   <string name="cancel">返回</string>
   <string name="sure">确认</string>
   <string name="process_setting">参数设置</string>
+  <string name="positive_no_load_setting">正向空载参数设置</string>
   <string name="current_model">当前型号：%1$s</string>
 </resources>

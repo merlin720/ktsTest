@@ -11,6 +11,8 @@ import com.example.ktsdemo.CustomTitleBar;
 import com.example.ktsdemo.R;
 import com.example.ktsdemo.base.BaseActivity;
 import com.jakewharton.rxbinding2.view.RxView;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -23,15 +25,13 @@ import static com.example.ktsdemo.util.CommonUtils.IP;
  */
 public class CustomSettingActivity extends BaseActivity {
 
-  private static final String GET_SETTING_FILE = IP + ":8080/test/querySettingFiles.do";
-
   private TextView model_setting;
   private TextView system_param;
   private TextView curve_parameter;
   private TextView process_standard;
   private TextView process_count_setting;
   private TextView exit;
-
+  CompositeDisposable compositeDisposable;
   private List<String> mContentData;
 
   @Override protected int setLayoutId() {
@@ -66,67 +66,74 @@ public class CustomSettingActivity extends BaseActivity {
 
   @Override
   protected void setListener() {
+    compositeDisposable = new CompositeDisposable();
     titleLayout.setTitleClickListener(new CustomTitleBar.TitleUpdateListener() {
       @Override public void onLeftClick() {
         finish();
       }
     });
-    RxView.clicks(model_setting)
+    Disposable disposable = RxView.clicks(model_setting)
         .throttleFirst(500, TimeUnit.MICROSECONDS)
         .subscribe(new Consumer<Object>() {
           @Override public void accept(Object o) throws Exception {
             setModelSetting();
           }
         });
-    RxView.clicks(system_param)
+    compositeDisposable.add(disposable);
+    Disposable disposable1 = RxView.clicks(system_param)
         .throttleFirst(500, TimeUnit.MICROSECONDS)
         .subscribe(new Consumer<Object>() {
           @Override public void accept(Object o) throws Exception {
             setSystemParameter();
           }
         });
-    RxView.clicks(curve_parameter)
+    Disposable disposable2 = RxView.clicks(curve_parameter)
         .throttleFirst(500, TimeUnit.MICROSECONDS)
         .subscribe(new Consumer<Object>() {
           @Override public void accept(Object o) throws Exception {
             setCurveParameter();
           }
         });
-    RxView.clicks(process_standard)
+    Disposable disposable3 = RxView.clicks(process_standard)
         .throttleFirst(500, TimeUnit.MICROSECONDS)
         .subscribe(new Consumer<Object>() {
           @Override public void accept(Object o) throws Exception {
             setProcessStandard();
           }
         });
-    RxView.clicks(process_count_setting)
+    Disposable disposable4 = RxView.clicks(process_count_setting)
         .throttleFirst(500, TimeUnit.MICROSECONDS)
         .subscribe(new Consumer<Object>() {
           @Override public void accept(Object o) throws Exception {
             setProcessCountSetting();
           }
         });
-    RxView.clicks(exit)
+    Disposable disposable5 = RxView.clicks(exit)
         .throttleFirst(500, TimeUnit.MICROSECONDS)
         .subscribe(new Consumer<Object>() {
           @Override public void accept(Object o) throws Exception {
             doExit();
           }
         });
+    compositeDisposable.add(disposable1);
+    compositeDisposable.add(disposable2);
+    compositeDisposable.add(disposable3);
+    compositeDisposable.add(disposable4);
+    compositeDisposable.add(disposable5);
   }
 
   /**
    * 型号设置
    */
   private void setModelSetting() {
-      startActivity(new Intent(CustomSettingActivity.this,ModelSettingActivity.class));
+    startActivity(new Intent(CustomSettingActivity.this, ModelSettingActivity.class));
   }
 
   /**
    * 系统设置
    */
   private void setSystemParameter() {
-
+    startActivity(new Intent(CustomSettingActivity.this, ReverseSettingActivity.class));
   }
 
   /**

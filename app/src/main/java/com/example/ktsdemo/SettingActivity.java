@@ -31,7 +31,7 @@ import static com.example.ktsdemo.util.CommonUtils.SETTING_PATH;
  */
 public class SettingActivity extends BaseActivity {
 
-  private static final String GET_SETTING_FILE = IP + ":8080/test/querySettingFiles.do";
+  private static final String GET_SETTING_FILE = IP + "test/querySettingFiles.do";
   private RecyclerView mRecyclerView;
 
   private KTSListAdapter adapter;

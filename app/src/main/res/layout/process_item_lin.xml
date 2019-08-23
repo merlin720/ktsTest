@@ -4,7 +4,6 @@
     android:layout_height="50dp"
     android:layout_marginEnd="20dp"
     android:layout_marginStart="20dp"
-    android:layout_marginTop="20dp"
     android:orientation="horizontal">
 
     <TextView
@@ -22,7 +21,7 @@
         android:id="@+id/process_item_1_ed"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:gravity="center"
         android:textColor="@color/col_333333"
         android:textSize="18sp"
@@ -42,7 +41,7 @@
         android:id="@+id/process_item_1_ed1"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:gravity="center"
         android:textColor="@color/col_333333"
         android:textSize="18sp"

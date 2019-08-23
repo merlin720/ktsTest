@@ -13,9 +13,11 @@ import com.example.ktsdemo.adapter.KTSListAdapter;
 import com.example.ktsdemo.base.BaseActivity;
 import com.example.ktsdemo.bean.DotsBean;
 import com.example.ktsdemo.net.NetworkMgr1;
+import com.example.ktsdemo.util.CommonUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.merlin.network.CallBack;
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +34,7 @@ import static com.example.ktsdemo.util.CommonUtils.PATH;
  */
 public class ListActivity extends BaseActivity {
 
-  private static final String getFiles = IP + ":8080/test/queryFiles.do";
+
   private RecyclerView mRecyclerView;
 
   private KTSListAdapter adapter;
@@ -77,7 +79,7 @@ public class ListActivity extends BaseActivity {
     params.put("filePath", path);
     params.put("endStr", ".andr");
     NetworkMgr1.getInstance()
-        .post(String.class, getFiles, params, new CallBack<String>() {
+        .post(String.class, CommonUtils.getFiles, params, new CallBack<String>() {
           @Override
           public void onResponse(String response) {
             JSONObject jsonObject = null;
@@ -86,7 +88,7 @@ public class ListActivity extends BaseActivity {
               String code = jsonObject.getString("code");
               String message = jsonObject.getString("message");
               String str = jsonObject.getString("data");
-              if ("0".equals(code)) {
+              if  ("0".equals(code)) {
                 Type type = new TypeToken<ArrayList<String>>() {
                 }.getType();
                 Gson gson = new Gson();
@@ -113,8 +115,9 @@ public class ListActivity extends BaseActivity {
     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
       @Override public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         if (mContentData.size()>0){
+          File file = new File(path,mContentData.get(position));
           Intent intent = new Intent(ListActivity.this,MainActivity.class);
-          intent.putExtra("path", mContentData.get(position));
+          intent.putExtra("path", file.getAbsolutePath());
           startActivity(intent);
         }
       }
