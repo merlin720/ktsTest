@@ -160,144 +160,69 @@
       android:layout_width="0dp"
       android:layout_weight="1"
       android:layout_height="match_parent">
-      <LinearLayout
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/gray"
+      android:orientation="vertical">
+
+      <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray"
-        android:orientation="vertical">
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="@dimen/d_20">
 
-        <RelativeLayout
+        <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginStart="20dp"
-          android:layout_marginEnd="@dimen/d_20">
-
-          <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/setting_bg"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/d_20">
-
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="15dp"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="最大值（N·m）顺时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_9"
-              layout="@layout/process_item_lin" />
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="逆时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_10"
-              layout="@layout/process_item_lin" />
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="15dp"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="最小值（N·m）顺时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_11"
-              layout="@layout/process_item_lin" />
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="逆时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_12"
-              layout="@layout/process_item_lin" />
-
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="15dp"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="平均值（N·m）顺时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_13"
-              layout="@layout/process_item_lin" />
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="逆时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_14"
-              layout="@layout/process_item_lin" />
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="15dp"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="被动值（N·m）顺时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_15"
-              layout="@layout/process_item_lin" />
-            <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="@dimen/d_20"
-              android:background="@color/gray"
-              android:gravity="center"
-              android:text="逆时针"
-              android:textColor="@color/blue_dark"
-              android:textSize="18sp" />
-            <include
-              android:id="@+id/process_layout_16"
-              layout="@layout/process_item_lin" />
-
-          </LinearLayout>
+          android:layout_marginTop="25dp"
+          android:background="@drawable/setting_bg"
+          android:orientation="vertical"
+          android:paddingBottom="@dimen/d_20">
 
           <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="@dimen/d_20"
             android:background="@color/gray"
             android:gravity="center"
-            android:text="合格标准"
+            android:text="顺时针钢度"
             android:textColor="@color/blue_dark"
             android:textSize="18sp" />
-        </RelativeLayout>
+          <include
+            android:id="@+id/process_layout_9"
+            layout="@layout/process_item_lin" />
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_20"
+            android:background="@color/gray"
+            android:gravity="center"
+            android:text="逆时针钢度"
+            android:textColor="@color/blue_dark"
+            android:textSize="18sp" />
+          <include
+            android:id="@+id/process_layout_10"
+            layout="@layout/process_item_lin" />
 
 
-      </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="13dp"
+          android:layout_marginStart="@dimen/d_20"
+          android:background="@color/gray"
+          android:gravity="center"
+          android:text="合格标准"
+          android:textColor="@color/blue_dark"
+          android:textSize="18sp" />
+      </RelativeLayout>
+
+
+    </LinearLayout>
     </ScrollView>
   </LinearLayout>
 

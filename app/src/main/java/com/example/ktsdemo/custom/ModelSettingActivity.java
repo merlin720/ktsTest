@@ -230,10 +230,10 @@ public class ModelSettingActivity extends BaseActivity {
               jsonObject = new JSONObject(response);
               String code = jsonObject.getString("code");
               String message = jsonObject.getString("message");
+              String data = jsonObject.getString("data");
               if ("0".equals(code)) {
-
-                Toast.makeText(ModelSettingActivity.this, message, Toast.LENGTH_LONG).show();
-                finish();
+                Toast.makeText(ModelSettingActivity.this, data, Toast.LENGTH_LONG).show();
+                getFiles();
               } else {
                 Toast.makeText(ModelSettingActivity.this, message, Toast.LENGTH_LONG).show();
               }
@@ -265,9 +265,9 @@ public class ModelSettingActivity extends BaseActivity {
               String code = jsonObject.getString("code");
               String message = jsonObject.getString("message");
               if ("0".equals(code)) {
-
+                getFiles();
                 Toast.makeText(ModelSettingActivity.this, message, Toast.LENGTH_LONG).show();
-                finish();
+
               } else {
                 Toast.makeText(ModelSettingActivity.this, message, Toast.LENGTH_LONG).show();
               }
@@ -302,7 +302,7 @@ public class ModelSettingActivity extends BaseActivity {
               if ("0".equals(code)) {
 
                 Toast.makeText(ModelSettingActivity.this, message, Toast.LENGTH_LONG).show();
-                finish();
+                getFiles();
               } else {
                 Toast.makeText(ModelSettingActivity.this, message, Toast.LENGTH_LONG).show();
               }

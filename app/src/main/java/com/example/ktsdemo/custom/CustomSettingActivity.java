@@ -130,17 +130,17 @@ public class CustomSettingActivity extends BaseActivity {
   }
 
   /**
-   * 系统设置
+   * 正向空载
    */
   private void setSystemParameter() {
     startActivity(new Intent(CustomSettingActivity.this, ReverseSettingActivity.class));
   }
 
   /**
-   * 曲线参数
+   * 钢性
    */
   private void setCurveParameter() {
-
+    startActivity(new Intent(CustomSettingActivity.this, SteelActivity.class));
   }
 
   /**
@@ -154,7 +154,7 @@ public class CustomSettingActivity extends BaseActivity {
    * 加工计数设置
    */
   private void setProcessCountSetting() {
-
+    startActivity(new Intent(CustomSettingActivity.this, ReverseSettingActivity.class));
   }
 
   /**

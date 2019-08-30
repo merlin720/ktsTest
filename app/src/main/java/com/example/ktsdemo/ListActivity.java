@@ -51,6 +51,7 @@ public class ListActivity extends BaseActivity {
 
   @Override
   protected void initView() {
+    titleLayout.setLeftImage(R.drawable.left_arrow);
     titleLayout.setMiddleTitle(getString(R.string.main_list));
     titleLayout.getMiddleView().getPaint().setFakeBoldText(true);
     titleLayout.setMiddleTextSize(19);
@@ -112,6 +113,11 @@ public class ListActivity extends BaseActivity {
   }
 @Override
   protected void setListener() {
+  titleLayout.setTitleClickListener(new CustomTitleBar.TitleUpdateListener() {
+    @Override public void onLeftClick() {
+      finish();
+    }
+  });
     adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
       @Override public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         if (mContentData.size()>0){
