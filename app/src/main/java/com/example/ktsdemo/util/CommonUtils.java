@@ -11,8 +11,8 @@ import java.text.DecimalFormat;
  */
 public class CommonUtils {
   public static final boolean isDebug = !BuildConfig.ISRELEASE;
-  //public static final String IP = "http://192.168.0.102:8081/";
-  public static final String IP = "http://192.168.1.234:8080/";
+  public static final String IP = "http://192.168.1.197:8081/";
+  //public static final String IP = "http://192.168.1.234:8080/";
   public static final String PATH = "/Users/merlin720/kts/document/";
   public static final String SETTING_PATH = "/Users/merlin720/kts/document/config/testcfg/";
 
@@ -21,10 +21,12 @@ public class CommonUtils {
 
   //配置开始关闭的文件路径
   //public static final String START_STOP_PATH = "C:\\keyen\\zsprog\\config\\syspricfg\\rio.ini";
-  public static final String START_STOP_PATH = "/Users/merlin720/kts/document/openclose.txt";
+  public static final String START_STOP_PATH = "F:\\SLYCC\\Start Window\\Config\\rio.ini";
+  //public static final String START_STOP_PATH = "/Users/merlin720/kts/document/openclose.txt";
   //数据存储的文件路径
   //public static final String NEW_DATA_FILE_PATH = "E:\\runt\\type16\\wwi.xml";
-  public static final String NEW_DATA_FILE_PATH = "/Users/merlin720/kts/document/";
+  public static final String NEW_DATA_FILE_PATH = "F:\\SLYCC\\Start Window\\Config\\Action\\";
+  //public static final String NEW_DATA_FILE_PATH = "/Users/merlin720/kts/document/";
   public static final String NEW_SETTING_PATH = "/Users/merlin720/kts/document/ktscfg/";
   public static final String NEW_MODEL_SETTING_PATH = "/Users/merlin720/kts/document/ktscfg/testcfg/";
 

@@ -235,15 +235,15 @@ public class MainActivity extends BaseActivity {
               String str = jsonObject.getString("data");
               if ("0".equals(code)) {
 
-                Type type1 = new TypeToken<ArrayList<String>>() {
-                }.getType();
-                Gson gson1= new Gson();
-                List<String> list1 = gson1.fromJson(str, type1);
-                Type type = new TypeToken<ArrayList<ArrayList<DotsBean>>>() {
+                //Type type1 = new TypeToken<ArrayList<String>>() {
+                //}.getType();
+                //Gson gson1= new Gson();
+                //List<String> list1 = gson1.fromJson(str, type1);
+                Type type = new TypeToken<ArrayList<DotsBean>>() {
                 }.getType();
                 Gson gson = new Gson();
-                List<List<DotsBean>> list = gson.fromJson(list1.get(0), type);
-                mLineChart.setData(generateLineData1(list.get(0)));
+                List<DotsBean> list = gson.fromJson(str, type);
+                mLineChart.setData(generateLineData1(list));
                 mLineChart.animateX(3000);
               } else {
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
@@ -306,7 +306,7 @@ public class MainActivity extends BaseActivity {
       ds1.setDrawCircles(false);
       ds1.disableDashedLine();
 
-      ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[i]);
+      ds1.setColor(ColorTemplate.VORDIPLOM_COLORS[i+1]);
 
       // load DataSets from files in assets folder
       sets.add(ds1);
